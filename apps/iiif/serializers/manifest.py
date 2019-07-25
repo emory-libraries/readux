@@ -63,6 +63,8 @@ class Serializer(JSONSerializer):
     def _init_options(self):
         super()._init_options()
         self.version = self.json_kwargs.pop('version', 'v2')
+        self.annotators = self.json_kwargs.pop('annotators')
+        self.exportdate = self.json_kwargs.pop('exportdate')        
 
     def start_serialization(self):
         self._init_options()
@@ -96,6 +98,18 @@ class Serializer(JSONSerializer):
               {
                 "label": "Notes",
                 "value": obj.metadata
+              },
+              {
+                "label": "Edition Type",
+                "value": "Readux IIIF Exported Edition"
+              },
+              {
+                "label": "Annotators",
+                "value": self.annotators
+              },
+              {
+                "label": "Export Date",
+                "value": self.exportdate
               }],
               "description": obj.summary,
               "thumbnail": {

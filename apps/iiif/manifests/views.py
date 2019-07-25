@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.http import HttpResponse
+from datetime import datetime
 from django.views import View
 from django.views.generic.base import TemplateView
 from django.core.serializers import serialize
@@ -25,7 +26,9 @@ class ManifestDetail(View):
                 serialize(
                     'manifest',
                     self.get_queryset(),
-                    version=kwargs['version']
+                    version=kwargs['version'],
+                    annotators=request.user.name,
+                    exportdate=datetime.utcnow()
                 )
             )
         , safe=False)
@@ -57,7 +60,7 @@ class ManifestExport(View):
         # we should probably move this out of the view, into a library
         manifest = self.get_queryset()[0]
 
-        zip = IiifManifestExport.get_zip(manifest, kwargs['version'])
+        zip = IiifManifestExport.get_zip(manifest, kwargs['version'], request)
         resp = HttpResponse(zip, content_type = "application/x-zip-compressed")
         resp['Content-Disposition'] = 'attachment; filename=iiif_export.zip'
 
