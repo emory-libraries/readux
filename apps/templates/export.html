@@ -29,11 +29,8 @@
         <form action="{% url 'ManifestExport' 'v2' volume.pid %}" class="button_to" method="POST"><div><input type="submit" value="Export IIIF Bundle" title="Export volume and annotations as a IIIF bundle for preservation."/>{% csrf_token %}</div></form>
       </div>
 
-      <div class='uk-padding'>
+     <div class='uk-padding'>
         <h3>Static Site Export</h3>
-        <p>Export volume and annotations as static digital edition.</p>
-
-
         <form class="volume-webexport"  action="{% url 'JekyllExport' 'v2' volume.pid %}"  method="POST">
           {% csrf_token %}
           <div class="text-danger form-errors">
@@ -78,14 +75,9 @@
         {% endif %}
     {% endfor %}
 
-
-            <div class="form-group export-form-group" >
-              <button type="submit" class="btn btn-primary center-block export-btn" id="export-button"><i class="fa fa-download" aria-hidden="true"></i> Export</button>
-            </div>
+              <input type="submit" value="Export Static Edition" id="export-button">
         </form>
-
       </div>
-
     </div>
   </div>
 {% endblock viewer %}
