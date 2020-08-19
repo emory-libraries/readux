@@ -1,6 +1,6 @@
 // Colors
-$rx-color-grey-1: #737373;
-$rx-color-grey-2: #999999;
+$rx-color-grey-1: #595959;
+$rx-color-grey-2: #737373;
 $rx-color-grey-3: #eeeeee;
 $rx-color-accent-1: #950953;
 $rx-color-accent-2: #510029;
@@ -13,6 +13,15 @@ $rx-color-accent-2: #510029;
 .uk-input {
   border-width: 3px;
   width: 50%;
+}
+
+.uk-link, a {
+  color: var(--link-color);
+  text-decoration: underline dotted;
+}
+
+a.nav-link {
+  text-decoration: none;
 }
 
 .uk-button-primary {
